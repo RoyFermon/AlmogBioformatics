@@ -23,16 +23,18 @@ def local_alignment(seq1, seq2):
 
     alignments = aligner.align(seq1, seq2)
 
+    max_score = min(len(seq1), len(seq2))
     print("Local alignment:")
     for alignment in alignments:
         print(alignment)
         print("Score:", alignment.score)
+        print(f"Match percentage: {100 * alignment.score / max_score}%")
         break  # Only display the best alignment
 
 
 # Read sequences from FASTA files
-seq1 = read_fasta("vaccinia virus.fasta")
-seq2 = read_fasta("TM250_HUMAN.fasta")
+seq1 = read_fasta("disfunction_lactase_enzyme_HUMAN.fasta")
+seq2 = read_fasta("lactase_enzyme_HUMAN.fasta")
 
 # Perform local alignment
 local_alignment(seq1, seq2)
